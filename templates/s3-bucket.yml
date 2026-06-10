@@ -1,1 +1,118 @@
----
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Dynamic S3 bucket template for tst account using Fn::ForEach
+
+Transform: AWS::LanguageExtensions
+
+Metadata:
+  TemplateName: tst-s3-buckets
+  Description: Creates multiple S3 buckets using bucket IDs and bucket-name parameters
+
+Parameters:
+  Environment:
+    Type: String
+    Description: Environment name
+    AllowedValues:
+      - dev
+      - tst
+      - stg
+      - prd
+
+  ApplicationName:
+    Type: String
+    Description: Application or project name
+
+  Owner:
+    Type: String
+    Description: Team or owner name
+
+  BucketIdentifiers:
+    Type: CommaDelimitedList
+    Description: List of bucket IDs to create. Example: 01,03,04,05,06,07,08,09,10
+
+  BucketName01:
+    Type: String
+    Description: Actual S3 bucket name for bucket 01
+
+  BucketName03:
+    Type: String
+    Description: Actual S3 bucket name for bucket 03
+
+  BucketName04:
+    Type: String
+    Description: Actual S3 bucket name for bucket 04
+
+  BucketName05:
+    Type: String
+    Description: Actual S3 bucket name for bucket 05
+
+  BucketName06:
+    Type: String
+    Description: Actual S3 bucket name for bucket 06
+
+  BucketName07:
+    Type: String
+    Description: Actual S3 bucket name for bucket 07
+
+  BucketName08:
+    Type: String
+    Description: Actual S3 bucket name for bucket 08
+
+  BucketName09:
+    Type: String
+    Description: Actual S3 bucket name for bucket 09
+
+  BucketName10:
+    Type: String
+    Description: Actual S3 bucket name for bucket 10
+
+Mappings: {}
+
+Conditions: {}
+
+Resources:
+  Fn::ForEach::S3Buckets:
+    - BucketId
+    - !Ref BucketIdentifiers
+    - S3Bucket${BucketId}:
+        Type: AWS::S3::Bucket
+        Properties:
+          BucketName: !Ref BucketName${BucketId}
+
+          PublicAccessBlockConfiguration:
+            BlockPublicAcls: true
+            BlockPublicPolicy: true
+            IgnorePublicAcls: true
+            RestrictPublicBuckets: true
+
+          Tags:
+            - Key: Name
+              Value: !Ref BucketName${BucketId}
+            - Key: Environment
+              Value: !Ref Environment
+            - Key: Application
+              Value: !Ref ApplicationName
+            - Key: Owner
+              Value: !Ref Owner
+            - Key: BucketId
+              Value: !Ref BucketId
+            - Key: StackName
+              Value: !Ref AWS::StackName
+            - Key: Region
+              Value: !Ref AWS::Region
+
+Outputs:
+  StackName:
+    Description: CloudFormation stack name
+    Value: !Ref AWS::StackName
+
+  Environment:
+    Description: Environment name
+    Value: !Ref Environment
+
+  ApplicationName:
+    Description: Application name
+    Value: !Ref ApplicationName
+
+  BucketIds:
+    Description: Bucket identifiers used by Fn::ForEach
+    Value: !Join [',', !Ref BucketIdentifiers]

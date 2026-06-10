@@ -1,0 +1,54 @@
+[
+  {
+    "ParameterKey": "Environment",
+    "ParameterValue": "tst"
+  },
+  {
+    "ParameterKey": "ApplicationName",
+    "ParameterValue": "s3-demo"
+  },
+  {
+    "ParameterKey": "Owner",
+    "ParameterValue": "platform"
+  },
+  {
+    "ParameterKey": "BucketIdentifiers",
+    "ParameterValue": "01,03,04,05,06,07,08,09,10"
+  },
+  {
+    "ParameterKey": "BucketName01",
+    "ParameterValue": "tst-bucket-01"
+  },
+  {
+    "ParameterKey": "BucketName03",
+    "ParameterValue": "r-bucvket-03"
+  },
+  {
+    "ParameterKey": "BucketName04",
+    "ParameterValue": "r-bucvket-04"
+  },
+  {
+    "ParameterKey": "BucketName05",
+    "ParameterValue": "r-bucvket-05"
+  },
+  {
+    "ParameterKey": "BucketName06",
+    "ParameterValue": "r-bucvket-06"
+  },
+  {
+    "ParameterKey": "BucketName07",
+    "ParameterValue": "r-bucvket-07"
+  },
+  {
+    "ParameterKey": "BucketName08",
+    "ParameterValue": "r-bucvket-08"
+  },
+  {
+    "ParameterKey": "BucketName09",
+    "ParameterValue": "r-bucvket-09"
+  },
+  {
+    "ParameterKey": "BucketName10",
+    "ParameterValue": "r-bucvket-10"
+  }
+]
